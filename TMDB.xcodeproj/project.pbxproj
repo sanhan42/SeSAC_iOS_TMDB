@@ -13,6 +13,8 @@
 		BF96FB442899F70C0035C467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB422899F70C0035C467 /* Main.storyboard */; };
 		BF96FB462899F70D0035C467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB452899F70D0035C467 /* Assets.xcassets */; };
 		BF96FB492899F70D0035C467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB472899F70D0035C467 /* LaunchScreen.storyboard */; };
+		BF96FB512899F7CC0035C467 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB502899F7CC0035C467 /* .gitignore */; };
+		BF96FB532899F8930035C467 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96FB522899F8930035C467 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		BF96FB452899F70D0035C467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF96FB482899F70D0035C467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF96FB4A2899F70D0035C467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF96FB502899F7CC0035C467 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BF96FB522899F8930035C467 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 		BF96FB302899F70C0035C467 = {
 			isa = PBXGroup;
 			children = (
+				BF96FB502899F7CC0035C467 /* .gitignore */,
 				BF96FB3B2899F70C0035C467 /* TMDB */,
 				BF96FB3A2899F70C0035C467 /* Products */,
 			);
@@ -63,6 +68,7 @@
 				BF96FB452899F70D0035C467 /* Assets.xcassets */,
 				BF96FB472899F70D0035C467 /* LaunchScreen.storyboard */,
 				BF96FB4A2899F70D0035C467 /* Info.plist */,
+				BF96FB522899F8930035C467 /* APIKey.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF96FB512899F7CC0035C467 /* .gitignore in Resources */,
 				BF96FB492899F70D0035C467 /* LaunchScreen.storyboard in Resources */,
 				BF96FB462899F70D0035C467 /* Assets.xcassets in Resources */,
 				BF96FB442899F70C0035C467 /* Main.storyboard in Resources */,
@@ -140,6 +147,7 @@
 			files = (
 				BF96FB412899F70C0035C467 /* ViewController.swift in Sources */,
 				BF96FB3D2899F70C0035C467 /* AppDelegate.swift in Sources */,
+				BF96FB532899F8930035C467 /* APIKey.swift in Sources */,
 				BF96FB3F2899F70C0035C467 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
