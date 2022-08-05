@@ -111,6 +111,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="po8-fr-Nfh"/>
+                    <connections>
+                        <outlet property="trendCollectionView" destination="Dlb-fI-aAM" id="pKT-Xg-LeF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LD-1k-jRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

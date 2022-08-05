@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     let searchController = UISearchController()
+    @IBOutlet weak var trendCollectionView: UICollectionView!
     
     var list: [Movie] = []
     var startPage = 1
@@ -38,27 +39,43 @@ class ViewController: UIViewController {
         }
     }
     
-    func getMediaData() {
-        let trendUrl = EndPoint.trendURL + APIKey.TMDB + "&page=\(startPage)"
-        AF.request(trendUrl, method: .get).validate(statusCode: 200...300).responseData { response in
+    func getCast(id: Int) -> [Cast] {
+        let creditsUrl = EndPoint.movieURL + "\(id)" + "/credits?api_key=" + APIKey.TMDB + Language.korean
+        var rtn: [Cast] = []
+        AF.request(creditsUrl, method: .get).validate(statusCode: 200...300).responseData { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
-                let creditsUrl = EndPoint.movieURL + "movie_id" + "/credits?api_key=" + APIKey.TMDB + Language.korean
-                AF.request(creditsUrl, method: .get).validate(statusCode: 200...300).responseData { response in
-                    switch response.result {
-                    case .success(let value):
-                        let json = JSON(value)
-                        print(json)
-                        
-                    case .failure(let error):
-                        print(error)
+                //                print(json)
+                for person in json["cast"].arrayValue {
+                    if person["known_for_department"].stringValue == "Acting" {
+                        rtn.append(Cast(name: person["name"].stringValue, profilePath: person["profile_path"].stringValue, character: person["character"].stringValue, id: person["id"].intValue))
                     }
                 }
             case .failure(let error):
                 print(error)
             }
+//            print(rtn)
+        }
+        return rtn
+    }
+    
+    func getMediaData() {
+        let trendUrl = EndPoint.trendURL + APIKey.TMDB + "&page=\(startPage)"
+        AF.request(trendUrl, method: .get).validate(statusCode: 200...300).responseData { [self] response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                for movie in json["results"].arrayValue {
+                    let castList: [Cast] = getCast(id: movie["id"].intValue) // 이 함수 호출이 완료되길 기다려주고 싶은데 방법을 모르겠다ㅠㅠㅠㅠ
+                    print("!!!!!!!!!!!", castList)
+                    list.append(Movie(id: movie["id"].intValue, title: movie["title"].stringValue, release: movie["release_date"].stringValue, genreIds: movie["genre_ids"].arrayObject as? [Int] ?? [0], posterPath: movie["poster_path"].stringValue, Overview: movie["overview"].stringValue, casts: castList))
+                }
+            case .failure(let error):
+                print(error)
+            }
+            trendCollectionView.reloadData()
+            print(list[0].casts)
         }
     }
 }
