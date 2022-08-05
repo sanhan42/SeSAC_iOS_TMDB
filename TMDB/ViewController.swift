@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var startPage = 1
     var totalCount = 0
 
+    let semaphore = DispatchSemaphore(value: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = searchController
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
     func getCast(id: Int) -> [Cast] {
         let creditsUrl = EndPoint.movieURL + "\(id)" + "/credits?api_key=" + APIKey.TMDB + Language.korean
         var rtn: [Cast] = []
-        AF.request(creditsUrl, method: .get).validate(statusCode: 200...300).responseData { response in
+        AF.request(creditsUrl, method: .get).validate(statusCode: 200...300).responseData(queue:.global()) { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -55,8 +57,10 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
-//            print(rtn)
+            self.semaphore.signal()
         }
+        self.semaphore.wait()
+//        print("@@@@@@@@@@", rtn)
         return rtn
     }
     
@@ -67,15 +71,16 @@ class ViewController: UIViewController {
             case .success(let value):
                 let json = JSON(value)
                 for movie in json["results"].arrayValue {
-                    let castList: [Cast] = getCast(id: movie["id"].intValue) // 이 함수 호출이 완료되길 기다려주고 싶은데 방법을 모르겠다ㅠㅠㅠㅠ
-                    print("!!!!!!!!!!!", castList)
+                    semaphore.wait()
+                    let castList: [Cast] = getCast(id: movie["id"].intValue) // 이 함수 호출이 완료되길 기다려주고 싶은데 방법을 모르겠다 => semaphore로 해결!
+                    semaphore.signal()
                     list.append(Movie(id: movie["id"].intValue, title: movie["title"].stringValue, release: movie["release_date"].stringValue, genreIds: movie["genre_ids"].arrayObject as? [Int] ?? [0], posterPath: movie["poster_path"].stringValue, Overview: movie["overview"].stringValue, casts: castList))
                 }
             case .failure(let error):
                 print(error)
             }
             trendCollectionView.reloadData()
-            print(list[0].casts)
+            print(list)
         }
     }
 }
