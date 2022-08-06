@@ -22,6 +22,7 @@
 		BF96FB492899F70D0035C467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB472899F70D0035C467 /* LaunchScreen.storyboard */; };
 		BF96FB512899F7CC0035C467 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BF96FB502899F7CC0035C467 /* .gitignore */; };
 		BF96FB532899F8930035C467 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96FB522899F8930035C467 /* APIKey.swift */; };
+		BFF22390289E20D3009309F2 /* TrendMediaAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF2238F289E20D3009309F2 /* TrendMediaAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		BF96FB4A2899F70D0035C467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF96FB502899F7CC0035C467 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BF96FB522899F8930035C467 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		BFF2238F289E20D3009309F2 /* TrendMediaAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendMediaAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		BF96FB3B2899F70C0035C467 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				BFF2238E289E1ED5009309F2 /* APIManager */,
 				BF48A3B3289C824000B194FA /* Struct */,
 				BF48A3B0289C678700B194FA /* Protocol */,
 				BF56B57F289C1C8F00BB79C0 /* Constant */,
@@ -114,6 +117,14 @@
 				BF96FB4A2899F70D0035C467 /* Info.plist */,
 			);
 			path = TMDB;
+			sourceTree = "<group>";
+		};
+		BFF2238E289E1ED5009309F2 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				BFF2238F289E20D3009309F2 /* TrendMediaAPIManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 				BF96FB412899F70C0035C467 /* ViewController.swift in Sources */,
 				BF48A3B5289C825E00B194FA /* MovieStruct.swift in Sources */,
 				BF96FB3D2899F70C0035C467 /* AppDelegate.swift in Sources */,
+				BFF22390289E20D3009309F2 /* TrendMediaAPIManager.swift in Sources */,
 				BF48A3AC289C66F000B194FA /* TrendCollectionViewCell.swift in Sources */,
 				BF48A3B2289C67B400B194FA /* ReuseableViewProtocol.swift in Sources */,
 				BF56B581289C1D0500BB79C0 /* URLInfo.swift in Sources */,
