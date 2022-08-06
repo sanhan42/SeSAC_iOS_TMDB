@@ -13,6 +13,8 @@ struct Movie {
     var release: String
     var genreIds: [Int]
     var posterPath: String
+    var backdropPath: String
     var Overview: String
+    var vote_average: Double
     var casts: [Cast]
 }

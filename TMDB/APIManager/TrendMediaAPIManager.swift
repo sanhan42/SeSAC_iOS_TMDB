@@ -64,7 +64,7 @@ class TrendMediaAPIManager {
     func getMediaData(startPage:Int, completionHandler: @escaping CompletionHandler) {
         var list: [Movie] = []
         var totalPages: Int = 0
-        let trendUrl = EndPoint.trendURL + APIKey.TMDB + "&page=\(startPage)"
+        let trendUrl = EndPoint.trendURL + APIKey.TMDB + "&page=\(startPage)" + Language.korean
         AF.request(trendUrl, method: .get).validate(statusCode: 200...300).responseData(queue: .global()) { [self] response in
             switch response.result {
             case .success(let value):
@@ -74,7 +74,7 @@ class TrendMediaAPIManager {
                     semaphore.wait()
                     let castList: [Cast] = getCast(id: movie["id"].intValue) // 이 함수 호출이 완료되길 기다려주고 싶은데 방법을 모르겠다 => semaphore로 해결!
                     semaphore.signal()
-                    list.append(Movie(id: movie["id"].intValue, title: movie["title"].stringValue, release: movie["release_date"].stringValue, genreIds: movie["genre_ids"].arrayObject as? [Int] ?? [0], posterPath: movie["poster_path"].stringValue, Overview: movie["overview"].stringValue, casts: castList))
+                    list.append(Movie(id: movie["id"].intValue, title: movie["title"].stringValue, release: movie["release_date"].stringValue, genreIds: movie["genre_ids"].arrayObject as? [Int] ?? [0], posterPath: movie["poster_path"].stringValue, backdropPath: movie["backdrop_path"].stringValue, Overview: movie["overview"].stringValue,vote_average: movie["vote_average"].doubleValue ,casts: castList))
                 }
             case .failure(let error):
                 print(error)

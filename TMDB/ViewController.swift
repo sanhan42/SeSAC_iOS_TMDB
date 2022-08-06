@@ -23,9 +23,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        trendCollectionView.delegate = self
+        trendCollectionView.dataSource = self
+        trendCollectionView.prefetchDataSource = self
         navigationItem.searchController = searchController
+        setCollectionViewLayout()
         setList()
-        print(genres)
         // Do any additional setup after loading the view.
     }
     
@@ -44,12 +47,34 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func setCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        let spacing:CGFloat = 16
+        let width = (UIScreen.main.bounds.width - spacing*2)
+        layout.itemSize = CGSize(width: width, height: view.frame.height * 0.5)
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        layout.minimumLineSpacing = spacing
+        layout.minimumInteritemSpacing = spacing
+        trendCollectionView.collectionViewLayout = layout
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendCollectionViewCell.identifier, for: indexPath)  as? TrendCollectionViewCell else {return UICollectionViewCell()}
+        cell.setDesign()
+        let item = list[indexPath.item]
+        cell.releaseLabel.text = item.release
+        cell.genreLabel.text = "#" + (genres[item.genreIds[0]] ?? "영화")
+        cell.voteAverageLabel.text = String(format: "%.2f", item.vote_average)
+        cell.titleLabel.text = item.title
+        cell.castLabel.text = item.casts.map { $0.name }.joined(separator: ", ")
+        guard let url = URL(string: EndPoint.imageURL+item.posterPath) else {return cell}
+        cell.posterImage.load(url: url)
+        
         return cell
     }
 }
@@ -59,6 +84,7 @@ extension ViewController: UICollectionViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if list.count - 1 == indexPath.item && list.count < totalPages {
                 startPage += 1
+                self.setList()
             }
         }
     }

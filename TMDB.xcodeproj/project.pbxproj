@@ -11,6 +11,7 @@
 		BF48A3B2289C67B400B194FA /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3B1289C67B400B194FA /* ReuseableViewProtocol.swift */; };
 		BF48A3B5289C825E00B194FA /* MovieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3B4289C825E00B194FA /* MovieStruct.swift */; };
 		BF48A3B7289C86B900B194FA /* CastStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3B6289C86B900B194FA /* CastStruct.swift */; };
+		BF505E96289E99B500B27B59 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF505E95289E99B500B27B59 /* ImageViewExtension.swift */; };
 		BF56B57B289C1BA300BB79C0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BF56B57A289C1BA300BB79C0 /* Alamofire */; };
 		BF56B57E289C1BD400BB79C0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = BF56B57D289C1BD400BB79C0 /* SwiftyJSON */; };
 		BF56B581289C1D0500BB79C0 /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF56B580289C1D0500BB79C0 /* URLInfo.swift */; };
@@ -30,6 +31,7 @@
 		BF48A3B1289C67B400B194FA /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		BF48A3B4289C825E00B194FA /* MovieStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStruct.swift; sourceTree = "<group>"; };
 		BF48A3B6289C86B900B194FA /* CastStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastStruct.swift; sourceTree = "<group>"; };
+		BF505E95289E99B500B27B59 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		BF56B580289C1D0500BB79C0 /* URLInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		BF96FB392899F70C0035C467 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF96FB3C2899F70C0035C467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 			path = Struct;
 			sourceTree = "<group>";
 		};
+		BF505E94289E999600B27B59 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BF505E95289E99B500B27B59 /* ImageViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		BF56B57F289C1C8F00BB79C0 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		BF96FB3B2899F70C0035C467 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				BF505E94289E999600B27B59 /* Extension */,
 				BFF2238E289E1ED5009309F2 /* APIManager */,
 				BF48A3B3289C824000B194FA /* Struct */,
 				BF48A3B0289C678700B194FA /* Protocol */,
@@ -212,6 +223,7 @@
 				BF96FB3D2899F70C0035C467 /* AppDelegate.swift in Sources */,
 				BFF22390289E20D3009309F2 /* TrendMediaAPIManager.swift in Sources */,
 				BF48A3AC289C66F000B194FA /* TrendCollectionViewCell.swift in Sources */,
+				BF505E96289E99B500B27B59 /* ImageViewExtension.swift in Sources */,
 				BF48A3B2289C67B400B194FA /* ReuseableViewProtocol.swift in Sources */,
 				BF56B581289C1D0500BB79C0 /* URLInfo.swift in Sources */,
 				BF96FB532899F8930035C467 /* APIKey.swift in Sources */,
