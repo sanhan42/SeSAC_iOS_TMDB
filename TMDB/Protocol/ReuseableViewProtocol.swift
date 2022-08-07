@@ -11,7 +11,19 @@ protocol ReuseableViewProtocol {
     static var identifier: String { get }
 }
 
+extension UIViewController: ReuseableViewProtocol {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 extension TrendCollectionViewCell: ReuseableViewProtocol {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
+extension UITableViewCell : ReuseableViewProtocol {
     static var identifier: String {
         return String(describing: self)
     }

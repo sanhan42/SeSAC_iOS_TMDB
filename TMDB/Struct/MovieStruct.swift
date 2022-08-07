@@ -17,4 +17,5 @@ struct Movie {
     var Overview: String
     var vote_average: Double
     var casts: [Cast]
+    var crews: [Crew]
 }

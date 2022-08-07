@@ -59,6 +59,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         trendCollectionView.collectionViewLayout = layout
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.identifier) as? MovieDetailViewController else {return}
+        vc.movie = list[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return list.count
     }
