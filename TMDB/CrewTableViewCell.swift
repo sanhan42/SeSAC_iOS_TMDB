@@ -8,5 +8,8 @@
 import UIKit
 
 class CrewTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var departmentLabel: UILabel!
+    @IBOutlet weak var jobLabel: UILabel!
 }

@@ -8,5 +8,7 @@
 import UIKit
 
 class CastTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var characterLabel: UILabel!
 }
