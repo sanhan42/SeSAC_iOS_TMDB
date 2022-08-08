@@ -76,6 +76,9 @@
                                                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <state key="normal" title="Button"/>
                                                                                     <buttonConfiguration key="configuration" style="plain" image="paperclip" catalog="system"/>
+                                                                                    <connections>
+                                                                                        <action selector="linkButtonClicked:" destination="3CR-Uc-qXt" eventType="touchUpInside" id="oXF-wr-7KF"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Bom-EF-FHY">
                                                                                     <rect key="frame" x="16" y="140" width="68" height="30"/>

@@ -19,7 +19,7 @@ class TrendCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var linkButton: UIButton!
-    
+   
     func setDesign() {
         releaseLabel.textColor = .darkGray
         releaseLabel.font = .systemFont(ofSize: 14)

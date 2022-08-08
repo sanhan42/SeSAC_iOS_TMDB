@@ -37,6 +37,35 @@ class TrendMediaAPIManager {
         semaphore.signal()
         return genres
     }
+
+    func getVideo(id: Int, completionHandler: @escaping (String) -> ()) {
+        var videoUrl = EndPoint.movieURL + "\(id)" + "/videos?api_key=" + APIKey.TMDB + Language.korean
+        var videoKey = ""
+        semaphore.wait()
+        AF.request(videoUrl, method: .get).validate(statusCode: 200...300).responseData(queue:.global()) { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)["results"].arrayValue
+                if json.isEmpty {
+                    videoUrl = EndPoint.movieURL + "\(id)" + "/videos?api_key=" + APIKey.TMDB
+                }
+            case .failure(let error):
+                print(error)
+            }
+            self.semaphore.signal()
+        }
+        self.semaphore.wait()
+        AF.request(videoUrl, method: .get).validate(statusCode: 200...300).responseData(queue:.global()) { response in
+            switch response.result {
+            case .success(let value):
+                videoKey = JSON(value)["results"].arrayValue[0]["key"].stringValue
+            case .failure(let error):
+                print(error)
+            }
+            self.semaphore.signal()
+            completionHandler(videoKey)
+        }
+    }
     
     func getCrew(id: Int) -> [Crew] {
         let creditsUrl = EndPoint.movieURL + "\(id)" + "/credits?api_key=" + APIKey.TMDB + Language.korean

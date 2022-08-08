@@ -18,8 +18,6 @@ class ViewController: UIViewController {
     let genres: [Int:String] = TrendMediaAPIManager.shared.getGenresData()
     var startPage = 1
     var totalPages = 0
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +71,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendCollectionViewCell.identifier, for: indexPath)  as? TrendCollectionViewCell else {return UICollectionViewCell()}
         cell.setDesign()
+        cell.linkButton.tag = indexPath.item
         let item = list[indexPath.item]
         cell.releaseLabel.text = item.release
         cell.genreLabel.text = "#" + (genres[item.genreIds[0]] ?? "영화")
@@ -87,6 +86,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension ViewController: UICollectionViewDataSourcePrefetching {
+    @IBAction func linkButtonClicked(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "WebVideo", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else { return }
+        
+        vc.movieID =  list[sender.tag].id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if list.count - 1 == indexPath.item && list.count < totalPages {

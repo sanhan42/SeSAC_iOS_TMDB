@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF4194F828A1B60A00AF4811 /* WebVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4194F728A1B60A00AF4811 /* WebVideo.storyboard */; };
+		BF4194FA28A1B7AD00AF4811 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4194F928A1B7AD00AF4811 /* WebViewController.swift */; };
 		BF48A3AC289C66F000B194FA /* TrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3AB289C66F000B194FA /* TrendCollectionViewCell.swift */; };
 		BF48A3B2289C67B400B194FA /* ReuseableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3B1289C67B400B194FA /* ReuseableViewProtocol.swift */; };
 		BF48A3B5289C825E00B194FA /* MovieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A3B4289C825E00B194FA /* MovieStruct.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF4194F728A1B60A00AF4811 /* WebVideo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebVideo.storyboard; sourceTree = "<group>"; };
+		BF4194F928A1B7AD00AF4811 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		BF48A3AB289C66F000B194FA /* TrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF48A3B1289C67B400B194FA /* ReuseableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableViewProtocol.swift; sourceTree = "<group>"; };
 		BF48A3B4289C825E00B194FA /* MovieStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStruct.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				BF96FB402899F70C0035C467 /* ViewController.swift */,
 				BF96FB422899F70C0035C467 /* Main.storyboard */,
 				BF61EA38289FEED9003F195C /* MovieDetail.storyboard */,
+				BF4194F728A1B60A00AF4811 /* WebVideo.storyboard */,
+				BF4194F928A1B7AD00AF4811 /* WebViewController.swift */,
 				BF61EA4028A00698003F195C /* OverviewTableViewCell.swift */,
 				BF61EA3C289FF0B8003F195C /* CastTableViewCell.swift */,
 				BF61EA3E289FF0C7003F195C /* CrewTableViewCell.swift */,
@@ -223,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF96FB512899F7CC0035C467 /* .gitignore in Resources */,
+				BF4194F828A1B60A00AF4811 /* WebVideo.storyboard in Resources */,
 				BF96FB492899F70D0035C467 /* LaunchScreen.storyboard in Resources */,
 				BF96FB462899F70D0035C467 /* Assets.xcassets in Resources */,
 				BF96FB442899F70C0035C467 /* Main.storyboard in Resources */,
@@ -249,6 +256,7 @@
 				BF505E96289E99B500B27B59 /* ImageViewExtension.swift in Sources */,
 				BF48A3B2289C67B400B194FA /* ReuseableViewProtocol.swift in Sources */,
 				BF56B581289C1D0500BB79C0 /* URLInfo.swift in Sources */,
+				BF4194FA28A1B7AD00AF4811 /* WebViewController.swift in Sources */,
 				BF61EA3F289FF0C7003F195C /* CrewTableViewCell.swift in Sources */,
 				BF96FB532899F8930035C467 /* APIKey.swift in Sources */,
 				BF96FB3F2899F70C0035C467 /* SceneDelegate.swift in Sources */,
