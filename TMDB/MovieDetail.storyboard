@@ -55,24 +55,21 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverviewTableViewCell" rowHeight="131" id="y8G-UG-D0h" customClass="OverviewTableViewCell" customModule="TMDB" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="277.5" width="374" height="131"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverviewTableViewCell" rowHeight="186" id="y8G-UG-D0h" customClass="OverviewTableViewCell" customModule="TMDB" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="277.5" width="374" height="186"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y8G-UG-D0h" id="mdb-ys-gwd">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="186"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tesdddddddddddddddddddddddddddddddddddddddddd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y93-jN-ZQc">
-                                                    <rect key="frame" x="8" y="8" width="358" height="97"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="lX1-am-wZN"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="8" y="8" width="358" height="144"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyf-l9-6ZI">
-                                                    <rect key="frame" x="175" y="105" width="24" height="18"/>
+                                                    <rect key="frame" x="175" y="160" width="24" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="57F-qJ-dqM"/>
                                                         <constraint firstAttribute="width" constant="24" id="w3a-7I-yp9"/>
@@ -87,7 +84,7 @@
                                                 <constraint firstItem="Yyf-l9-6ZI" firstAttribute="centerX" secondItem="mdb-ys-gwd" secondAttribute="centerX" id="MmW-Td-O92"/>
                                                 <constraint firstAttribute="bottom" secondItem="Yyf-l9-6ZI" secondAttribute="bottom" constant="8" id="cQN-8u-3Yc"/>
                                                 <constraint firstItem="y93-jN-ZQc" firstAttribute="leading" secondItem="mdb-ys-gwd" secondAttribute="leading" constant="8" id="lvd-qD-VHk"/>
-                                                <constraint firstItem="Yyf-l9-6ZI" firstAttribute="top" secondItem="y93-jN-ZQc" secondAttribute="bottom" id="mKZ-pp-fOa"/>
+                                                <constraint firstItem="Yyf-l9-6ZI" firstAttribute="top" secondItem="y93-jN-ZQc" secondAttribute="bottom" constant="8" id="mKZ-pp-fOa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -96,7 +93,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CastTableViewCell" rowHeight="100" id="BKu-L1-kdU" customClass="CastTableViewCell" customModule="TMDB" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="408.5" width="374" height="100"/>
+                                        <rect key="frame" x="20" y="463.5" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BKu-L1-kdU" id="U5z-Hg-Pm6">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
@@ -143,7 +140,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CrewTableViewCell" rowHeight="100" id="4vS-6W-302" customClass="CrewTableViewCell" customModule="TMDB" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="508.5" width="374" height="100"/>
+                                        <rect key="frame" x="20" y="563.5" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4vS-6W-302" id="yc3-hY-JJU">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>

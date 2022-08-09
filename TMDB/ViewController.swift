@@ -57,6 +57,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         trendCollectionView.collectionViewLayout = layout
     }
     
+    @IBAction func linkButtonClicked(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "WebVideo", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else { return }
+        
+        vc.movieID =  list[sender.tag].id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.identifier) as? MovieDetailViewController else {return}
@@ -86,14 +94,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 }
 
 extension ViewController: UICollectionViewDataSourcePrefetching {
-    @IBAction func linkButtonClicked(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "WebVideo", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: WebViewController.identifier) as? WebViewController else { return }
-        
-        vc.movieID =  list[sender.tag].id
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {

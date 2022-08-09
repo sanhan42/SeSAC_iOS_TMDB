@@ -14,6 +14,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     var movie = Movie(id: 0, title: "", release: "", genreIds: [], posterPath: "", backdropPath: "", Overview: "", vote_average: 0, casts: [], crews: [])
+    var isExpanded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class MovieDetailViewController: UIViewController {
         if #available(iOS 15, *) {
             movieInfoTableView.sectionHeaderTopPadding = 16
         }
+        movieInfoTableView.rowHeight = UITableView.automaticDimension
+        
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .white
         titleLabel.text = movie.title
@@ -33,10 +36,23 @@ class MovieDetailViewController: UIViewController {
         guard let url = URL(string: EndPoint.imageURL+movie.posterPath) else { return }
         posterImageView.load(url: url)
     }
+    
+//    @IBAction func chevronButtonClicked(_ sender: UIButton) {
+//        isExpanded = !isExpanded
+//        movieInfoTableView.reloadData()
+////       왜 셀 선택이 아닌 버튼 클릭으로는 버튼의 이미지가 안바뀌지?
+//    }
 }
 
 
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            isExpanded = !isExpanded
+            movieInfoTableView.reloadData()
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -71,6 +87,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         case  0 :
             overviewCell.overviewLabel.text = movie.Overview
+            overviewCell.overviewLabel.numberOfLines = isExpanded ? 0 : 2
+            overviewCell.chevronButton.tintColor = .black
+            overviewCell.chevronButton.isEnabled = false
+            overviewCell.chevronButton.imageView?.image = isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
             return overviewCell
         case 1 :
             castCell.nameLabel.text = movie.casts[indexPath.item].name
