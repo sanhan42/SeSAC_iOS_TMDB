@@ -17,6 +17,27 @@ class TrendMediaAPIManager {
     
     typealias CompletionHandler = (Int, [Movie]) -> ()
     
+    func getMovieList(url:String, startPage:Int, completionHandler: @escaping (Int, [MovieListItem]) -> ()) {
+        var list: [MovieListItem] = []
+        var totalPages: Int = 0
+        let requestUrl = url + "&page=\(startPage)"
+        semaphore.wait()
+        AF.request(requestUrl, method: .get).validate(statusCode: 200...300).responseData(queue: .global()) { [self] response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                totalPages = json["total_pages"].intValue
+                for movie in json["results"].arrayValue {
+                    list.append(MovieListItem(id: movie["id"].intValue, title: movie["title"].stringValue, posterPath: movie["poster_path"].stringValue))
+                }
+            case .failure(let error):
+                print(error)
+            }
+            completionHandler(totalPages,list)
+            semaphore.signal()
+        }
+    }
+    
     func getGenresData() -> [Int:String] {
         var genres: [Int:String] = [:]
         let url = EndPoint.genreURL + APIKey.TMDB + Language.korean

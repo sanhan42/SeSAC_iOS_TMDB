@@ -10,16 +10,38 @@ import UIKit
 class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var movieID = 0
-    var sectionList = ["비슷한 영화", "추천 영화", "최신 영화", "인기 영화"]
+//    var sectionList = ["비슷한 영화", "추천 영화", "최신 영화", "인기 영화"]
+    var sectionList = MovieList.allCases.map {$0.rawValue}
+    var movieLists: [[MovieListItem]] = [[], [], [], []]
+    var startPage = [1, 1, 1, 1]
+    var totalPages = [0, 0, 0, 0]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         title = "다양한 영화"
+        
+        setMovieLists()
         // Do any additional setup after loading the view.
     }
+    
+    func setMovieLists () {
+        for (i, listCase) in MovieList.allCases.enumerated() {
+            TrendMediaAPIManager.shared.getMovieList(url: listCase.requestURL(id: movieID), startPage: startPage[i]) { totalPages, movieList in
+                self.totalPages[i] = totalPages
+                self.movieLists[i].append(contentsOf: movieList)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+    }
 }
+
+
 
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,12 +70,16 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return movieLists[collectionView.tag].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCollectionViewCell", for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell () }
-        cell.posterView.posterImageView.backgroundColor = .cyan
+        guard let url = URL(string: EndPoint.imageURL + movieLists[collectionView.tag][indexPath.item].posterPath) else {
+            cell.posterView.posterImageView.image = UIImage(named: "posterNoImage")
+            return cell
+        }
+        cell.posterView.posterImageView.load(url: url)
         return cell
     }
 }

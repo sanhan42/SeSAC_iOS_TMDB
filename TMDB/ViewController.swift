@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+//var latestList
+
 class ViewController: UIViewController {
     let searchController = UISearchController()
     @IBOutlet weak var trendCollectionView: UICollectionView!
