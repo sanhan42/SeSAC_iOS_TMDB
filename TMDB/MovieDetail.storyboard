@@ -39,15 +39,29 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wq4-eb-YhG">
+                                            <rect key="frame" x="262.5" y="184" width="135.5" height="32"/>
+                                            <color key="backgroundColor" white="0.22" alpha="0.74454867129294289" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="함께 시청된 콘텐츠">
+                                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="recommendButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LaP-fi-99P"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="qus-cN-HQX" firstAttribute="top" secondItem="Qjf-9p-PeY" secondAttribute="top" constant="16" id="6ot-gm-i1U"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wq4-eb-YhG" secondAttribute="trailing" constant="16" id="D8h-xe-b7S"/>
                                         <constraint firstAttribute="bottom" secondItem="zEC-LJ-Ltu" secondAttribute="bottom" id="Doc-Cc-L6G"/>
                                         <constraint firstAttribute="trailing" secondItem="zEC-LJ-Ltu" secondAttribute="trailing" id="GbV-jf-r8X"/>
                                         <constraint firstItem="tXd-HB-LdS" firstAttribute="leading" secondItem="Qjf-9p-PeY" secondAttribute="leading" constant="16" id="J55-9O-JSK"/>
                                         <constraint firstItem="zEC-LJ-Ltu" firstAttribute="top" secondItem="Qjf-9p-PeY" secondAttribute="top" id="L5q-Xa-A3M"/>
                                         <constraint firstItem="tXd-HB-LdS" firstAttribute="width" secondItem="zEC-LJ-Ltu" secondAttribute="width" multiplier="0.28" id="RGc-kh-xCJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Wq4-eb-YhG" secondAttribute="bottom" constant="12" id="c1l-Sm-eew"/>
                                         <constraint firstItem="qus-cN-HQX" firstAttribute="leading" secondItem="Qjf-9p-PeY" secondAttribute="leading" constant="20" id="ddJ-bc-j02"/>
                                         <constraint firstItem="tXd-HB-LdS" firstAttribute="top" secondItem="qus-cN-HQX" secondAttribute="bottom" constant="16" id="jrW-uc-gk3"/>
                                         <constraint firstAttribute="bottom" secondItem="tXd-HB-LdS" secondAttribute="bottom" constant="12" id="paC-F8-lht"/>
@@ -229,6 +243,7 @@
                         <outlet property="bgImageview" destination="zEC-LJ-Ltu" id="iUB-zz-cnS"/>
                         <outlet property="movieInfoTableView" destination="E1q-eg-HOp" id="CvE-K2-i0I"/>
                         <outlet property="posterImageView" destination="tXd-HB-LdS" id="QSl-6e-BEm"/>
+                        <outlet property="recommendButton" destination="Wq4-eb-YhG" id="dEz-Q2-Hus"/>
                         <outlet property="titleLabel" destination="qus-cN-HQX" id="tbG-Vb-DBR"/>
                     </connections>
                 </viewController>

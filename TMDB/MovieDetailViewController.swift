@@ -12,6 +12,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var bgImageview: UIImageView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var recommendButton: UIButton!
     
     var movie = Movie(id: 0, title: "", release: "", genreIds: [], posterPath: "", backdropPath: "", Overview: "", vote_average: 0, casts: [], crews: [])
     var isExpanded = false
@@ -21,20 +22,28 @@ class MovieDetailViewController: UIViewController {
         movieInfoTableView.delegate = self
         movieInfoTableView.dataSource = self
         
-        title = "출연/제작"
+        title = "영화 상세 정보"
         
         if #available(iOS 15, *) {
             movieInfoTableView.sectionHeaderTopPadding = 16
         }
         movieInfoTableView.rowHeight = UITableView.automaticDimension
         
-        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        recommendButton.layer.cornerRadius = 8
+        titleLabel.font = .systemFont(ofSize: 28, weight: .black)
         titleLabel.textColor = .white
         titleLabel.text = movie.title
         guard let url = URL(string: EndPoint.imageURL+movie.backdropPath) else { return }
         bgImageview.load(url: url)
         guard let url = URL(string: EndPoint.imageURL+movie.posterPath) else { return }
         posterImageView.load(url: url)
+    }
+    
+    @IBAction func recommendButtonClicked(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "MovieList", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MovieListViewController.identifier) as? MovieListViewController else { return }
+        vc.movieID = movie.id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 //    @IBAction func chevronButtonClicked(_ sender: UIButton) {

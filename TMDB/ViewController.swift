@@ -41,7 +41,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
