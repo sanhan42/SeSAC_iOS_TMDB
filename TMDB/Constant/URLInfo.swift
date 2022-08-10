@@ -24,9 +24,9 @@ enum MovieList: String, CaseIterable {
         case .recommendation:
             return "\(EndPoint.movieURL)\(id)/recommendations?api_key=\(APIKey.TMDB)\(Language.korean)"
         case .popular:
-            return "\(EndPoint.movieURL)/popular?api_key=\(APIKey.TMDB)\(Language.korean)"
+            return "\(EndPoint.movieURL)popular?api_key=\(APIKey.TMDB)\(Language.korean)"
         case .topRated:
-            return "\(EndPoint.movieURL)/top_rated?api_key=\(APIKey.TMDB)\(Language.korean)"
+            return "\(EndPoint.movieURL)top_rated?api_key=\(APIKey.TMDB)\(Language.korean)"
         }
     }
 }

@@ -35,6 +35,7 @@ class MovieListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+//                dump(self.movieLists)
             }
         }
         
