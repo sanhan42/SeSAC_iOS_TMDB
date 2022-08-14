@@ -21,9 +21,10 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         movieInfoTableView.delegate = self
         movieInfoTableView.dataSource = self
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationController?.navigationBar.topItem?.title = ""
         
-        title = "영화 상세 정보"
-        
+                
         if #available(iOS 15, *) {
             movieInfoTableView.sectionHeaderTopPadding = 16
         }
@@ -32,6 +33,12 @@ class MovieDetailViewController: UIViewController {
         recommendButton.layer.cornerRadius = 8
         titleLabel.font = .systemFont(ofSize: 28, weight: .black)
         titleLabel.textColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        movieInfoTableView.reloadData()
+        title = "영화 상세 정보"
         titleLabel.text = movie.title
         guard let url = URL(string: EndPoint.imageURL+movie.backdropPath) else { return }
         bgImageview.load(url: url)
@@ -43,6 +50,8 @@ class MovieDetailViewController: UIViewController {
         let sb = UIStoryboard(name: "MovieList", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: MovieListViewController.identifier) as? MovieListViewController else { return }
         vc.movieID = movie.id
+        vc.movieTitle = movie.title
+        vc.beforeVC = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

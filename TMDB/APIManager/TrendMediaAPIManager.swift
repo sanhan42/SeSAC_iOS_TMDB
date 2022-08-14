@@ -17,6 +17,25 @@ class TrendMediaAPIManager {
     
     typealias CompletionHandler = (Int, [Movie]) -> ()
     
+    func getMovieDetail(movieID:Int, completionHandler: @escaping (Movie) -> ()) {
+        var movie = Movie(id: 0, title: "", release: "", genreIds: [], posterPath: "", backdropPath: "", Overview: "", vote_average: 0, casts: [], crews: [])
+        let url = EndPoint.movieURL + "\(movieID)?api_key=" + APIKey.TMDB + Language.korean
+        AF.request(url, method: .get).validate(statusCode: 200...300).responseData(queue: .global()) { [self] response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                semaphore.wait()
+                let castList: [Cast] = getCast(id: json["id"].intValue)
+                let crewList: [Crew] = getCrew(id: json["id"].intValue)
+                semaphore.signal()
+                movie = Movie(id: json["id"].intValue, title: json["title"].stringValue, release: json["release_date"].stringValue, genreIds: json["genre_ids"].arrayObject as? [Int] ?? [0], posterPath: json["poster_path"].stringValue, backdropPath: json["backdrop_path"].stringValue, Overview: json["overview"].stringValue,vote_average: json["vote_average"].doubleValue ,casts: castList, crews: crewList)
+            case .failure(let error):
+                print(error)
+            }
+            completionHandler(movie)
+        }
+    }
+    
     func getMovieList(url:String, startPage:Int, completionHandler: @escaping (Int, [MovieListItem]) -> ()) {
         var list: [MovieListItem] = []
         var totalPages: Int = 0

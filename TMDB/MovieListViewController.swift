@@ -10,6 +10,8 @@ import UIKit
 class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var movieID = 0
+    var movieTitle = ""
+    var beforeVC = MovieDetailViewController()
 //    var sectionList = ["비슷한 영화", "추천 영화", "최신 영화", "인기 영화"]
     var sectionList = MovieList.allCases.map {$0.rawValue}
     var movieLists: [[MovieListItem]] = [[], [], [], []]
@@ -21,6 +23,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        self.navigationController?.navigationBar.topItem?.title = movieTitle
         title = "다양한 영화"
         
         setMovieLists()
@@ -82,5 +85,16 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         cell.posterView.posterImageView.load(url: url)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        TrendMediaAPIManager.shared.getMovieDetail(movieID: movieLists[collectionView.tag][indexPath.item].id) { movie in
+            DispatchQueue.main.async {
+                // 이전 화면으로 데이터를 전달하고 싶은데, 이전 VC를 가르키는 방법을 몰라 일단 현재 VC의 프로퍼티로 받아와서 처리해 줌.
+                // 이 방법이 맞는지 궁금...
+                self.beforeVC.movie = movie
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }
