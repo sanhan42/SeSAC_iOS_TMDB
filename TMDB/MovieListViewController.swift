@@ -41,11 +41,8 @@ class MovieListViewController: UIViewController {
 //                dump(self.movieLists)
             }
         }
-        
     }
 }
-
-
 
 extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,6 +61,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else { return UITableViewCell() }
         cell.contentCollectionView.delegate = self
         cell.contentCollectionView.dataSource = self
+        cell.contentCollectionView.prefetchDataSource = self
         cell.contentCollectionView.tag = indexPath.section
         cell.contentLabel.text = sectionList[indexPath.section]
         cell.contentCollectionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PosterCollectionViewCell")
@@ -94,6 +92,24 @@ extension MovieListViewController: UICollectionViewDelegate, UICollectionViewDat
                 // 이 방법이 맞는지 궁금...
                 self.beforeVC.movie = movie
                 self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+}
+
+extension MovieListViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+//            print("startPage : \(startPage[collectionView.tag]) , totalPage: \(totalPages[collectionView.tag])")
+            if movieLists[collectionView.tag].count - 1 == indexPath.item && startPage[collectionView.tag] < totalPages[collectionView.tag] {
+                startPage[collectionView.tag] += 1
+                let url = MovieList.allCases[collectionView.tag].requestURL(id: movieID)
+                TrendMediaAPIManager.shared.getMovieList(url: url, startPage: startPage[collectionView.tag]) { totalPages, movieList in
+                    DispatchQueue.main.async {
+                        self.movieLists[collectionView.tag].append(contentsOf: movieList)
+                        collectionView.reloadData()
+                    }
+                }
             }
         }
     }
